@@ -32,13 +32,6 @@ public class PasswordValidator {
             throw new IllegalArgumentException("Password should be length [8, 32]");
         }
 
-        String lowerCasePassword = password.toLowerCase();
-        for (String s : FORBIDDEN) {
-            if (lowerCasePassword.contains(s)) {
-                throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, password, admin, user");
-            }
-        }
-
         boolean hasUpCase = false;
         boolean hasLowCase = false;
         boolean hasDigit = false;
@@ -77,6 +70,13 @@ public class PasswordValidator {
             throw new IllegalArgumentException(
                     "Password should contain at least one special symbol"
             );
+        }
+
+        String lowerCasePassword = password.toLowerCase();
+        for (String s : FORBIDDEN) {
+            if (lowerCasePassword.contains(s)) {
+                throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, password, admin, user");
+            }
         }
         return password;
     }
